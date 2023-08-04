@@ -9,139 +9,173 @@ AllGyms allGymsFromJson(String str) => AllGyms.fromJson(json.decode(str));
 String allGymsToJson(AllGyms data) => json.encode(data.toJson());
 
 class AllGyms {
-  int? page;
-  List<Result>? results;
-  int? totalPages;
-  int? totalResults;
+  String ?imageg;
+  String ?status;
+  List<Gym>? gyms;
 
   AllGyms({
-    this.page,
-    this.results,
-    this.totalPages,
-    this.totalResults,
+    this.imageg,
+    this.status,
+    this.gyms,
   });
 
   factory AllGyms.fromJson(Map<String, dynamic> json) => AllGyms(
-    page: json["page"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-    totalPages: json["total_pages"],
-    totalResults: json["total_results"],
+    imageg: json["imageg"],
+    status: json["status"],
+    gyms: List<Gym>.from(json["gyms"].map((x) => Gym.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
-    "page": page,
-    "results": List<dynamic>.from(results!.map((x) => x.toJson())),
-    "total_pages": totalPages,
-    "total_results": totalResults,
+    "imageg": imageg,
+    "status": status,
+    "gyms": List<dynamic>.from(gyms!.map((x) => x.toJson())),
   };
 }
 
-class Result {
-  bool ?adult;
-  String? backdropPath;
-  int ?id;
-  String? title;
-  String? originalLanguage;
-  String? originalTitle;
-  String? overview;
-  String? posterPath;
-  MediaType? mediaType;
-  List<int>? genreIds;
-  double? popularity;
-  DateTime? releaseDate;
-  bool? video;
-  double? voteAverage;
-  int? voteCount;
+class Gym {
+  String? id;
   String? name;
-  String? originalName;
-  DateTime? firstAirDate;
-  List<String>? originCountry;
+  GymOwner? gymOwner;
+  String? address;
+  String? gymDays;
+  String? gymTimings;
+  int? rentaday;
+  int? agelimit;
+  String ?image;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
 
-  Result({
-    this.adult,
-    this.backdropPath,
+  Gym({
     this.id,
-    this.title,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.posterPath,
-    this.mediaType,
-    this.genreIds,
-    this.popularity,
-    this.releaseDate,
-    this.video,
-    this.voteAverage,
-    this.voteCount,
     this.name,
-    this.originalName,
-    this.firstAirDate,
-    this.originCountry,
+    this.gymOwner,
+    this.address,
+    this.gymDays,
+    this.gymTimings,
+    this.rentaday,
+    this.agelimit,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
-    adult: json["adult"],
-    backdropPath: json["backdrop_path"],
-    id: json["id"],
-    title: json["title"],
-    originalLanguage: json["original_language"],
-    originalTitle: json["original_title"],
-    overview: json["overview"],
-    posterPath: json["poster_path"],
-    mediaType: mediaTypeValues.map[json["media_type"]],
-    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
-    popularity: json["popularity"].toDouble(),
-    releaseDate: DateTime.parse(json["release_date"]),
-    video: json["video"],
-    voteAverage: json["vote_average"].toDouble(),
-    voteCount: json["vote_count"],
+  factory Gym.fromJson(Map<String, dynamic> json) => Gym(
+    id: json["_id"],
     name: json["name"],
-    originalName: json["original_name"],
-    firstAirDate: DateTime.parse(json["first_air_date"]),
-    originCountry: List<String>.from(json["origin_country"].map((x) => x)),
+    gymOwner: GymOwner.fromJson(json["gymOwner"]),
+    address: json["address"],
+    gymDays: json["gymDays"],
+    gymTimings: json["gymTimings"],
+    rentaday: json["rentaday"],
+    agelimit: json["agelimit"],
+    image: json["image"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+    v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
-    "adult": adult,
-    "backdrop_path": backdropPath,
-    "id": id,
-    "title": title,
-    "original_language": originalLanguage,
-    "original_title": originalTitle,
-    "overview": overview,
-    "poster_path": posterPath,
-    "media_type": mediaTypeValues.reverse[mediaType],
-    "genre_ids": List<dynamic>.from(genreIds!.map((x) => x)),
-    "popularity": popularity,
-    "release_date": "${releaseDate?.year.toString().padLeft(4, '0')}-${releaseDate?.month.toString().padLeft(2, '0')}-${releaseDate?.day.toString().padLeft(2, '0')}",
-    "video": video,
-    "vote_average": voteAverage,
-    "vote_count": voteCount,
+    "_id": id,
     "name": name,
-    "original_name": originalName,
-    "first_air_date": "${firstAirDate?.year.toString().padLeft(4, '0')}-${firstAirDate?.month.toString().padLeft(2, '0')}-${firstAirDate?.day.toString().padLeft(2, '0')}",
-    "origin_country": List<dynamic>.from(originCountry!.map((x) => x)),
+    "gymOwner": gymOwner?.toJson(),
+    "address": address,
+    "gymDays": gymDays,
+    "gymTimings": gymTimings,
+    "rentaday": rentaday,
+    "agelimit": agelimit,
+    "image": image,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "__v": v,
   };
 }
 
-enum MediaType {
-  MOVIE,
-  TV
-}
+class GymOwner {
+  String? id;
+  String? name;
+  String? email;
+  String? dob;
+  String? age;
+  String? password;
+  String? idPassport;
+  String? idPassportPicture;
+  String? country;
+  String? profilepicture;
+  int? phone;
+  int? role;
+  int? flag;
+  String? token;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
+  String? idPassword;
+  String? idPasswordPicture;
 
-final mediaTypeValues = EnumValues({
-  "movie": MediaType.MOVIE,
-  "tv": MediaType.TV
-});
+  GymOwner({
+    this.id,
+    this.name,
+    this.email,
+    this.dob,
+    this.age,
+    this.password,
+    this.idPassport,
+    this.idPassportPicture,
+    this.country,
+    this.profilepicture,
+    this.phone,
+    this.role,
+    this.flag,
+    this.token,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+    this.idPassword,
+    this.idPasswordPicture,
+  });
 
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
+  factory GymOwner.fromJson(Map<String, dynamic> json) => GymOwner(
+    id: json["_id"],
+    name: json["name"],
+    email: json["email"],
+    dob: json["dob"],
+    age: json["age"],
+    password: json["password"],
+    idPassport: json["IdPassport"],
+    idPassportPicture: json["IdPassport_picture"],
+    country: json["country"],
+    profilepicture: json["profilepicture"],
+    phone: json["phone"],
+    role: json["role"],
+    flag: json["flag"],
+    token: json["token"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+    v: json["__v"],
+    idPassword: json["IdPassword"],
+    idPasswordPicture: json["IdPassword_picture"],
+  );
 
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
+  Map<String, dynamic> toJson() => {
+    "_id": id,
+    "name": name,
+    "email": email,
+    "dob": dob,
+    "age": age,
+    "password": password,
+    "IdPassport": idPassport,
+    "IdPassport_picture": idPassportPicture,
+    "country": country,
+    "profilepicture": profilepicture,
+    "phone": phone,
+    "role": role,
+    "flag": flag,
+    "token": token,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "__v": v,
+    "IdPassword": idPassword,
+    "IdPassword_picture": idPasswordPicture,
+  };
 }

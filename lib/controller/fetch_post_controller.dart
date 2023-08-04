@@ -18,7 +18,5 @@ class getorderlist extends GetxController{
     var res = await API().allgyms();
     AllGyms model = allGymsFromJson(res);
     getorder.value = model;
-    print(getorder.value.totalPages);
-    print(getorder.value.results);
     getorder.refresh();
   }}
